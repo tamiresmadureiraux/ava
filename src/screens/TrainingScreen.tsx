@@ -16,7 +16,7 @@ import {
   intensityLabel,
   trainingPhaseLine,
 } from "../present"
-import type { DayPlan, Entry, Exercise, SessionRef, WeightUnit, WorkoutId } from "../types"
+import type { DayPlan, Entry, Exercise, SessionRef, WeightUnit } from "../types"
 
 export function TrainingScreen() {
   const { state, today, selected, setSelected, setTab, setDayPlan, openAdd, openReview, setClock } = useApp()
@@ -92,7 +92,8 @@ export function TrainingScreen() {
     )
   }
 
-  const workout = isWorkoutId(workoutId) ? WORKOUTS[workoutId] : null
+  const sessionId: SessionRef = workoutId
+  const workout = isWorkoutId(sessionId) ? WORKOUTS[sessionId] : null
   const list = plan ? exercisesFromPlan(plan) : workout ? sessionOrder(sessionExercises(workout.id, state.extras)) : []
   const log = state.logs[selected]
   const counted = list
@@ -102,7 +103,7 @@ export function TrainingScreen() {
 
   function begin() {
     setStarted(true)
-    if (!log?.trainStartedAt && !log?.done) setClock(selected, workoutId, { trainStartedAt: Date.now() })
+    if (!log?.trainStartedAt && !log?.done) setClock(selected, sessionId, { trainStartedAt: Date.now() })
     const first = counted[0]
     if (first) setOpenId(first.id)
   }
@@ -137,7 +138,7 @@ export function TrainingScreen() {
         </div>
         {begun ? null : <PlayButton label="Start workout" onClick={begin} />}
       </article>
-      <SessionWatch date={selected} workoutId={workoutId} />
+      <SessionWatch date={selected} workoutId={sessionId} />
       {spot ? (
         <>
           <span className="phase-chip">{PHASE_NAME[spot.phase]} phase</span>
@@ -166,7 +167,7 @@ export function TrainingScreen() {
               onToggle={() => setOpenId(openId === exercise.id ? null : exercise.id)}
               onSetDone={() => {
                 if (exercise.rest === "none" || log?.restStartedAt || log?.done) return
-                setClock(selected, workoutId, { restStartedAt: Date.now() })
+                setClock(selected, sessionId, { restStartedAt: Date.now() })
               }}
               onPreview={exercise.image ? () => setPreview({ src: exercise.image ?? "", name: exercise.name }) : undefined}
             />
@@ -185,7 +186,7 @@ export function TrainingScreen() {
 
       {begun ? (
         <div className="train-cta">
-          <FinishButton workoutId={workoutId} done={Boolean(log?.done)} />
+          <FinishButton workoutId={sessionId} done={Boolean(log?.done)} />
         </div>
       ) : null}
 
@@ -436,7 +437,7 @@ function LiftCard({
               onChange={(event) => save({ weight, reps: event.target.value, unit })}
             />
           </div>
-          {exercise.custom && workoutId ? (
+          {exercise.custom && isWorkoutId(workoutId) ? (
             <button type="button" className="text-link" onClick={() => removeExercise(workoutId, exercise.id)}>
               Remove exercise
             </button>

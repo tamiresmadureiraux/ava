@@ -1,3 +1,4 @@
+import { isPlanRef, isWorkoutId } from "./plans"
 import type { DayPlan, TrainingMonth, WorkoutId } from "./types"
 
 export const PROGRAM_START = "2026-10-06"
@@ -90,8 +91,8 @@ export function resolvedWorkout(
 ): WorkoutId | null {
   if (isBeforeProgram(iso)) return null
   const planned = schedule[iso]
-  if (planned === "rest" || (typeof planned === "string" && planned.startsWith("plan:"))) return null
-  if (planned) return planned
+  if (planned === "rest" || isPlanRef(planned)) return null
+  if (isWorkoutId(planned)) return planned
   return workoutIdFor(iso)
 }
 

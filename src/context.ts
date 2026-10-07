@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react"
-import type { AppState, BuiltPlan, CycleLog, CycleSettings, DayLog, DayPlan, Entry, Exercise, ProgressView, SessionRef, Tab, WorkoutId } from "./types"
+import type { AppState, BuiltPlan, CycleLog, CycleSettings, DayPlan, Entry, Exercise, ProgressView, SessionRef, Tab, WorkoutId } from "./types"
 
 export type AppApi = {
   state: AppState
@@ -14,7 +14,16 @@ export type AppApi = {
   setSelected: (iso: string) => void
   updateEntry: (date: string, exercise: Exercise, patch: Partial<Entry>) => void
   setDone: (date: string, workoutId: SessionRef, done: boolean) => void
-  setClock: (date: string, workoutId: SessionRef, patch: Partial<Pick<DayLog, "trainStartedAt" | "trainSeconds" | "restStartedAt" | "restSeconds">>) => void
+  setClock: (
+    date: string,
+    workoutId: SessionRef,
+    patch: {
+      trainStartedAt?: number | null
+      trainSeconds?: number
+      restStartedAt?: number | null
+      restSeconds?: number
+    },
+  ) => void
   saveBuiltPlan: (plan: { name: string; exercises: BuiltPlan["exercises"]; dates: string[] }) => void
   addExercise: (workoutId: WorkoutId, exercise: Exercise) => void
   removeExercise: (workoutId: WorkoutId, exerciseId: string) => void
