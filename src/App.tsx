@@ -12,7 +12,7 @@ import { TrainingScreen } from "./screens/TrainingScreen"
 import { WelcomeScreen } from "./screens/WelcomeScreen"
 import { isWorkoutId, planKey } from "./plans"
 import { emptyState, loadState, saveState, uid } from "./store"
-import type { AppState, CycleLog, DayPlan, Entry, Exercise, ProgressView, SessionRef, Tab } from "./types"
+import type { AppState, CycleLog, DayLog, DayPlan, Entry, Exercise, ProgressView, SessionRef, Tab } from "./types"
 
 function previewWelcome(): boolean {
   if (!import.meta.env.DEV) return false
@@ -139,9 +139,17 @@ export default function App() {
     setClock: (date, workoutId, patch) => {
       setState((current) => {
         const day = current.logs[date] ?? { workoutId, entries: {}, done: false }
-        const next = { ...day, workoutId, ...patch }
-        if ("trainStartedAt" in patch && patch.trainStartedAt == null) delete next.trainStartedAt
-        if ("restStartedAt" in patch && patch.restStartedAt == null) delete next.restStartedAt
+        const next: DayLog = { ...day, workoutId }
+        if (patch.trainSeconds != null) next.trainSeconds = patch.trainSeconds
+        if (patch.restSeconds != null) next.restSeconds = patch.restSeconds
+        if ("trainStartedAt" in patch) {
+          if (patch.trainStartedAt == null) delete next.trainStartedAt
+          else next.trainStartedAt = patch.trainStartedAt
+        }
+        if ("restStartedAt" in patch) {
+          if (patch.restStartedAt == null) delete next.restStartedAt
+          else next.restStartedAt = patch.restStartedAt
+        }
         return { ...current, logs: { ...current.logs, [date]: next } }
       })
     },
