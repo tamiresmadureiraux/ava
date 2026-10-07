@@ -25,7 +25,7 @@ export function HomeScreen() {
   const plan = chosen && isPlanRef(chosen) ? state.plans[chosen.slice(5)] : null
   const workout = chosen && isWorkoutId(chosen) ? WORKOUTS[chosen] : null
   const exercises = plan ? exercisesFromPlan(plan) : workout ? sessionOrder(sessionExercises(workout.id, state.extras)) : []
-  const photo = exercises.find((exercise) => exercise.image)?.image ?? (workout ? coverImage(workout) : null) ?? "/session-hero.jpg"
+  const photo = exercises.find((exercise) => exercise.image)?.image ?? (workout ? coverImage(workout) : null) ?? `${import.meta.env.BASE_URL}session-hero.jpg`
   const supports =
     spot && workout
       ? isStrengthId(workout.id)
@@ -37,7 +37,7 @@ export function HomeScreen() {
   return (
     <main className="screen home-screen">
       <header className="home-bar">
-        <img className="brand-mark" src="/ava-logo.png" alt="AVA" />
+        <img className="brand-mark" src={`${import.meta.env.BASE_URL}ava-logo.png`} alt="AVA" />
         <PageMenu />
       </header>
       <h1>Good morning, Tamires</h1>

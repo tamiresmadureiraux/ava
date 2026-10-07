@@ -124,7 +124,7 @@ export function TrainingScreen() {
         }}
       />
       <article className="session-hero">
-        <img src="/session-hero.jpg" alt="" />
+        <img src={`${import.meta.env.BASE_URL}session-hero.jpg`} alt="" />
         <div className="session-hero-shade" />
         <div className="session-hero-copy">
           <p className="eyebrow">Today's Training</p>

@@ -2,7 +2,10 @@ import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
 import { VitePWA } from "vite-plugin-pwa"
 
+const pages = process.env.GITHUB_ACTIONS === "true"
+
 export default defineConfig({
+  base: pages ? "/ava/" : "/",
   plugins: [
     react(),
     VitePWA({
@@ -13,8 +16,8 @@ export default defineConfig({
         short_name: "AVA",
         description: "Training, cycle, and progress",
         lang: "pt-BR",
-        start_url: "/",
-        scope: "/",
+        start_url: pages ? "/ava/" : "/",
+        scope: pages ? "/ava/" : "/",
         display: "standalone",
         background_color: "#0d0d0f",
         theme_color: "#0d0d0f",

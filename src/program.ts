@@ -11,7 +11,7 @@ function move(
   return { id, name, prescription, kind, rest, image }
 }
 
-const CARDIO = "/exercises/cardio.png"
+const CARDIO = `${import.meta.env.BASE_URL}exercises/cardio.png`
 
 const warmup = (id: string) =>
   move(id, "Incline treadmill, bike, or elliptical", "8–10 min", "cardio", "none", CARDIO)
@@ -29,12 +29,12 @@ export const WORKOUTS: Record<WorkoutId, Workout> = {
     mark: "A",
     exercises: [
       warmup("pa-warm"),
-      move("pa-leg", "Leg press", "4 × 8–12", "strength", "big", "/exercises/leg-press.png"),
-      move("pa-squat", "Smith machine squat or hack squat", "3 × 8–10", "strength", "big", "/exercises/smith-squat.png"),
-      move("pa-ext", "Leg extension", "3 × 10–15", "strength", "small", "/exercises/leg-extension.png"),
-      move("pa-hip", "Hip thrust", "4 × 8–12", "strength", "big", "/exercises/hip-thrust.png"),
-      move("pa-abd", "Hip abduction machine", "3 × 12–15", "strength", "small", "/exercises/hip-abduction.png"),
-      move("pa-calf", "Calf raise", "3 × 12–15", "strength", "small", "/exercises/calf-raise.png"),
+      move("pa-leg", "Leg press", "4 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/leg-press.png`),
+      move("pa-squat", "Smith machine squat or hack squat", "3 × 8–10", "strength", "big", `${import.meta.env.BASE_URL}exercises/smith-squat.png`),
+      move("pa-ext", "Leg extension", "3 × 10–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/leg-extension.png`),
+      move("pa-hip", "Hip thrust", "4 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/hip-thrust.png`),
+      move("pa-abd", "Hip abduction machine", "3 × 12–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/hip-abduction.png`),
+      move("pa-calf", "Calf raise", "3 × 12–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/calf-raise.png`),
       cooldown("pa-cool"),
     ],
   },
@@ -47,13 +47,13 @@ export const WORKOUTS: Record<WorkoutId, Workout> = {
     mark: "A",
     exercises: [
       warmup("sa-warm"),
-      move("sa-pull", "Lat pulldown", "3 × 8–12", "strength", "big", "/exercises/lat-pulldown.png"),
-      move("sa-row", "Seated row", "3 × 8–12", "strength", "big", "/exercises/seated-row.png"),
-      move("sa-press", "Chest press", "3 × 8–12", "strength", "big", "/exercises/chest-press.png"),
-      move("sa-fly", "Chest fly machine", "3 × 10–12", "strength", "small", "/exercises/chest-fly.png"),
-      move("sa-curl", "Biceps curl", "3 × 10–12", "strength", "small", "/exercises/biceps-curl.png"),
-      move("sa-tri", "Cable triceps pushdown", "3 × 10–12", "strength", "small", "/exercises/triceps-pushdown.png"),
-      move("sa-abs", "Abs", "3 séries", "core", "small", "/exercises/abs.png"),
+      move("sa-pull", "Lat pulldown", "3 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/lat-pulldown.png`),
+      move("sa-row", "Seated row", "3 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/seated-row.png`),
+      move("sa-press", "Chest press", "3 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/chest-press.png`),
+      move("sa-fly", "Chest fly machine", "3 × 10–12", "strength", "small", `${import.meta.env.BASE_URL}exercises/chest-fly.png`),
+      move("sa-curl", "Biceps curl", "3 × 10–12", "strength", "small", `${import.meta.env.BASE_URL}exercises/biceps-curl.png`),
+      move("sa-tri", "Cable triceps pushdown", "3 × 10–12", "strength", "small", `${import.meta.env.BASE_URL}exercises/triceps-pushdown.png`),
+      move("sa-abs", "Abs", "3 séries", "core", "small", `${import.meta.env.BASE_URL}exercises/abs.png`),
       cooldown("sa-cool"),
     ],
   },
@@ -64,7 +64,7 @@ export const WORKOUTS: Record<WorkoutId, Workout> = {
     weekday: 3,
     tone: "#1a7f9a",
     mark: "30",
-    exercises: [move("na-swim", "Swimming", "30–40 min", "swim", "none", "/exercises/swimming.png")],
+    exercises: [move("na-swim", "Swimming", "30–40 min", "swim", "none", `${import.meta.env.BASE_URL}exercises/swimming.png`)],
   },
   "pernas-b": {
     id: "pernas-b",
@@ -75,13 +75,13 @@ export const WORKOUTS: Record<WorkoutId, Workout> = {
     mark: "B",
     exercises: [
       warmup("pb-warm"),
-      move("pb-rdl", "Romanian deadlift", "3 × 8–10", "strength", "big", "/exercises/romanian-deadlift.png"),
-      move("pb-curl", "Lying or seated leg curl", "3 × 10–12", "strength", "big", "/exercises/leg-curl.png"),
-      move("pb-hip", "Hip thrust", "4 × 8–12", "strength", "big", "/exercises/hip-thrust.png"),
-      move("pb-split", "Bulgarian split squat", "3 × 8–10 cada perna", "strength", "big", "/exercises/bulgarian-split-squat.png"),
-      move("pb-kick", "Cable glute kickback", "3 × 12–15", "strength", "small", "/exercises/glute-kickback.png"),
-      move("pb-abd", "Hip abduction", "3 × 12–15", "strength", "small", "/exercises/hip-abduction.png"),
-      move("pb-calf", "Calf raise", "3 × 12–15", "strength", "small", "/exercises/calf-raise.png"),
+      move("pb-rdl", "Romanian deadlift", "3 × 8–10", "strength", "big", `${import.meta.env.BASE_URL}exercises/romanian-deadlift.png`),
+      move("pb-curl", "Lying or seated leg curl", "3 × 10–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/leg-curl.png`),
+      move("pb-hip", "Hip thrust", "4 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/hip-thrust.png`),
+      move("pb-split", "Bulgarian split squat", "3 × 8–10 cada perna", "strength", "big", `${import.meta.env.BASE_URL}exercises/bulgarian-split-squat.png`),
+      move("pb-kick", "Cable glute kickback", "3 × 12–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/glute-kickback.png`),
+      move("pb-abd", "Hip abduction", "3 × 12–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/hip-abduction.png`),
+      move("pb-calf", "Calf raise", "3 × 12–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/calf-raise.png`),
       cooldown("pb-cool"),
     ],
   },
@@ -94,14 +94,14 @@ export const WORKOUTS: Record<WorkoutId, Workout> = {
     mark: "B",
     exercises: [
       warmup("sb-warm"),
-      move("sb-row", "Cable row", "3 × 8–12", "strength", "big", "/exercises/cable-row.png"),
-      move("sb-lat", "Lat pulldown", "3 × 8–12", "strength", "big", "/exercises/lat-pulldown.png"),
-      move("sb-press", "Shoulder press", "3 × 8–12", "strength", "big", "/exercises/shoulder-press.png"),
-      move("sb-lat-raise", "Lateral raise", "3 × 12–15", "strength", "small", "/exercises/lateral-raise.png"),
-      move("sb-face", "Face pull", "3 × 12–15", "strength", "small", "/exercises/face-pull.png"),
-      move("sb-curl", "Biceps curl", "3 × 10–12", "strength", "small", "/exercises/biceps-curl.png"),
-      move("sb-tri", "Triceps pushdown", "3 × 10–12", "strength", "small", "/exercises/triceps-pushdown.png"),
-      move("sb-abs", "Abs", "3 séries", "core", "small", "/exercises/abs.png"),
+      move("sb-row", "Cable row", "3 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/cable-row.png`),
+      move("sb-lat", "Lat pulldown", "3 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/lat-pulldown.png`),
+      move("sb-press", "Shoulder press", "3 × 8–12", "strength", "big", `${import.meta.env.BASE_URL}exercises/shoulder-press.png`),
+      move("sb-lat-raise", "Lateral raise", "3 × 12–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/lateral-raise.png`),
+      move("sb-face", "Face pull", "3 × 12–15", "strength", "small", `${import.meta.env.BASE_URL}exercises/face-pull.png`),
+      move("sb-curl", "Biceps curl", "3 × 10–12", "strength", "small", `${import.meta.env.BASE_URL}exercises/biceps-curl.png`),
+      move("sb-tri", "Triceps pushdown", "3 × 10–12", "strength", "small", `${import.meta.env.BASE_URL}exercises/triceps-pushdown.png`),
+      move("sb-abs", "Abs", "3 séries", "core", "small", `${import.meta.env.BASE_URL}exercises/abs.png`),
       cooldown("sb-cool"),
     ],
   },
@@ -112,7 +112,7 @@ export const WORKOUTS: Record<WorkoutId, Workout> = {
     weekday: 6,
     tone: "#245f86",
     mark: "45",
-    exercises: [move("nb-swim", "Swimming", "30–45 min", "swim", "none", "/exercises/swimming.png")],
+    exercises: [move("nb-swim", "Swimming", "30–45 min", "swim", "none", `${import.meta.env.BASE_URL}exercises/swimming.png`)],
   },
 }
 
